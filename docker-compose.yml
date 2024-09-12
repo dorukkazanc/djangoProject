@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/djangoProject
+    depends_on:
+      db:
+        condition: service_healthy
+    container_name: djangoProject
+    command: python manage.py migrate && python manage.py runserver
+
+  db:
+    image: postgres:latest
+    ports:
+        - "5432:5432"
+    user: postgres
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: djangoProject
+      POSTGRES_PASSWORD: 123
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready", "-d", "djangoProject" ]
+      interval: 10s
+      timeout: 3s
+      retries: 5
