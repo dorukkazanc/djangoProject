@@ -48,7 +48,6 @@ Bu proje, Django ile geliştirilmiş bir web uygulamasıdır. Uygulama hem lokal
 
 ### Swagger 
 
-
-1. **Swagger kullanımı:**
-     -http://.../api/swagger üzerinden kullanabilirsiniz.
+1. **Swagger Kullanımı:**
+    - http://.../api/swagger üzerinden erişeblirsiniz.  
 
